@@ -1,1 +1,8 @@
-no leagues are available
+{% if leagues %}
+    <h1>Select a league</h1>
+    <ul>
+        {% for league in leagues %}
+            <li><a href="/select/{{league.abbreviation|lower}}">{{league.abbreviation}}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}

@@ -1,0 +1,8 @@
+{% if teams %}
+    <h1>Select your teams</h1>
+    <ul>
+        {% for team in teams %}
+            <li><a href="/select/nfl/{{team.abbreviation|lower}}">{{team.display_name}}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}
