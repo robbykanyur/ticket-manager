@@ -6,7 +6,7 @@ class League(models.Model):
     abbreviation = models.CharField(max_length=20)
 
     def __str__(self):
-        return self.name
+        return self.abbreviation
 
 
 class Team (models.Model):
@@ -16,7 +16,7 @@ class Team (models.Model):
     league = models.ForeignKey(League, null=True, on_delete=models.SET_NULL)
 
     def display_name(self):
-        return "%s %s" % (self.location, self.nickname)
+        return ("%s %s" % (self.location, self.nickname))
 
     def __str__(self):
-        return self.display_name
+        return self.display_name()
