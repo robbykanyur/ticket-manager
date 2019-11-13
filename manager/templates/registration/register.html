@@ -1,5 +1,16 @@
-<form method="post">
-    {%csrf_token%}
-    {{ form.as_p }}
-    <button type="submit">Register</button>
-</form>
+{% extends 'manager/base.html' %}
+
+{% block content %}
+<div class="valign-wrapper">
+    <div class="valign-content">
+        <form method="post">
+            {%csrf_token%}
+            <table>
+            {{ form.as_table }}
+            </table>
+            <button class="uk-button uk-button-primary" type="submit">Register</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+

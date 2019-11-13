@@ -1,6 +1,13 @@
 body {
   min-height: 100vh;
   background: #2596ee;
+  color: #111;
+}
+
+.notes {
+    padding: 30px;
+    color: #fff;
+    position: fixed;
 }
 
 .valign-wrapper {
@@ -17,4 +24,10 @@ body {
   text-align: center;
   min-width: 600px;
   border-radius: 8px;
+  box-shadow: 12px 12px 0 rgba(0,0,0,0.15);
 }
+
+.helptext {
+  display: none;
+}
+

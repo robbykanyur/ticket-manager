@@ -1,5 +1,5 @@
 from django.db import models
-import math
+
 
 class League(models.Model):
     name = models.CharField(max_length=50)
