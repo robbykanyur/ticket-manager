@@ -2,7 +2,7 @@
     <h1>Select your teams</h1>
     <ul>
         {% for team in teams %}
-        <li><a href="/games/{{league.abbreviation|lower}}/{{team.abbreviation|lower}}">{{team.display_name}}</a></li>
+        <li><a href="/schedule/{{league.abbreviation|lower}}/{{team.abbreviation|lower}}">{{team.display_name}}</a></li>
         {% endfor %}
     </ul>
 {% endif %}

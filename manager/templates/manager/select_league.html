@@ -2,7 +2,7 @@
     <h1>Select a league</h1>
     <ul>
         {% for league in leagues %}
-            <li><a href="/select/{{league.abbreviation|lower}}">{{league.abbreviation}}</a></li>
+            <li><a href="/add/{{league.abbreviation|lower}}">{{league.abbreviation}}</a></li>
         {% endfor %}
     </ul>
 {% endif %}
