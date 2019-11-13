@@ -17,8 +17,11 @@ class Team (models.Model):
                                related_name="team")
     championship_odds = models.IntegerField(default=0)
 
+    def unique_key(self):
+        return ("%s_%s") % (self.league.abbreviation, self.abbreviation)
+
     def display_name(self):
-        return ("%s %s" % (self.location, self.nickname))
+        return ("%s - %s %s" % (self.league.abbreviation, self.location, self.nickname))
 
     def __str__(self):
         return self.display_name()

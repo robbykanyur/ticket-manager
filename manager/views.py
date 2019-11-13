@@ -6,9 +6,8 @@ from django.contrib.auth.decorators import login_required
 from .models import League, Team, Game
 
 
-@login_required
 def index(request):
-    return HttpResponse('hello world')
+    return render(request, 'manager/home.html')
 
 
 def register(request):
