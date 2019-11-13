@@ -1,23 +1,46 @@
 from django.http import HttpResponse
-from django.template import loader
+from django.shortcuts import redirect, render
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 
-from .models import League, Team
+from .models import League, Team, Game
 
 
+@login_required
 def index(request):
     return HttpResponse('hello world')
 
 
+def register(request):
+    if request.method == 'POST':
+        f = UserCreationForm(request.POST)
+        if f.is_valid():
+            f.save()
+            return redirect('index')
+
+    f = UserCreationForm()
+    context = {'form': f}
+    return render(request, 'registration/register.html', context)
+
+
+@login_required
 def select_league(request):
-    template = loader.get_template('manager/select_league.html')
     leagues = League.objects.all()
     context = {'leagues': leagues}
-    return HttpResponse(template.render(context, request))
+    return render(request, 'manager/select_league.html', context)
 
 
-def select_team(request):
-    template = loader.get_template('manager/select_team.html')
-    teams = Team.objects.filter(league__abbreviation__contains="NFL")
+@login_required
+def select_team(request, league):
+    league = League.objects.get(abbreviation=league.upper())
+    teams = Team.objects.filter(league__abbreviation__contains=league)
     sorted_teams = sorted(teams, key=lambda t: t.display_name())
-    context = {'teams': sorted_teams}
-    return HttpResponse(template.render(context, request))
+    context = {'teams': sorted_teams, 'league': league}
+    return render(request, 'manager/select_team.html', context)
+
+
+@login_required
+def show_games(request, league, team):
+    games = Game.objects.all()
+    context = {'games': games}
+    return render(request, 'manager/show_games.html', context)

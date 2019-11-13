@@ -28,10 +28,17 @@ class Game (models.Model):
     team = models.ForeignKey(Team, null=True, on_delete=models.SET_NULL)
     opponent = models.ForeignKey(Team, null=True, on_delete=models.SET_NULL, 
                                  related_name="+")
-    game_date = models.DateTimeField(null=True)
+    date = models.DateTimeField(null=True)
+
+    def date_only(self):
+        return self.date.strftime("%x")
+
+    def time_only(self):
+        return self.date.strftime("%X")
 
     def game_quality(self):
-        home_index = 1000000 - self.team.championship_odds
-        away_index = 1000000 - self.opponent.championship_odds
+        return self.team.championship_odds * self.opponent.championship_odds
 
-        return math.floor((home_index * away_index) / 10000000000)
+    def __str__(self):
+        formatted_date = self.date.strftime("%x")
+        return ("%s at %s on %s" % (self.opponent, self.team, formatted_date))

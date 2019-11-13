@@ -1,0 +1,19 @@
+{% if games %}
+    <h1>Games</h1>
+    <ul>
+        <table>
+            <tr>
+                <td>opponent</td>
+                <td>date</td>
+                <td>time</td>
+            </tr>
+            {% for game in games %}
+                <tr>
+                    <td>{{ game.opponent }}</td>
+                    <td>{{ game.date_only }}</td>
+                    <td>{{ game.time_only }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </ul>
+{% endif %}
